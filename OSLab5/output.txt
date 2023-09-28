@@ -1,0 +1,52 @@
+Enter number of Processes: 5
+Enter number of allocations of resource of type A for 0 Process: 1
+Enter number of allocations of resource of type B for 0 Process: 1
+Enter number of allocations of resource of type C for 0 Process: 2
+Enter number of allocations of resource of type A for 1 Process: 2
+Enter number of allocations of resource of type B for 1 Process: 1
+Enter number of allocations of resource of type C for 1 Process: 2
+Enter number of allocations of resource of type A for 2 Process: 3
+Enter number of allocations of resource of type B for 2 Process: 0
+Enter number of allocations of resource of type C for 2 Process: 1
+Enter number of allocations of resource of type A for 3 Process: 0
+Enter number of allocations of resource of type B for 3 Process: 2
+Enter number of allocations of resource of type C for 3 Process: 0
+Enter number of allocations of resource of type A for 4 Process: 1
+Enter number of allocations of resource of type B for 4 Process: 1
+Enter number of allocations of resource of type C for 4 Process: 1
+Enter number of resources required of type A for 0 Process: 5
+Enter number of resources required of type B for 0 Process: 4
+Enter number of resources required of type C for 0 Process: 4
+Enter number of resources required of type A for 1 Process: 4
+Enter number of resources required of type B for 1 Process: 3
+Enter number of resources required of type C for 1 Process: 3
+Enter number of resources required of type A for 2 Process: 9
+Enter number of resources required of type B for 2 Process: 1
+Enter number of resources required of type C for 2 Process: 3
+Enter number of resources required of type A for 3 Process: 8
+Enter number of resources required of type B for 3 Process: 6
+Enter number of resources required of type C for 3 Process: 4
+Enter number of resources required of type A for 4 Process: 2
+Enter number of resources required of type B for 4 Process: 2
+Enter number of resources required of type C for 4 Process: 3
+Enter number of resources available of type A: 3
+Enter number of resources available of type B: 2
+Enter number of resources available of type C: 1
+
+1th Process Executed
+Available Resources: A-5, B-3, C-3
+
+4th Process Executed
+Available Resources: A-6, B-4, C-4
+
+0th Process Executed
+Available Resources: A-7, B-5, C-6
+
+2th Process Executed
+Available Resources: A-10, B-5, C-7
+
+3th Process Executed
+Available Resources: A-10, B-7, C-7
+
+Start->P1->P4->P0->P2->P3->End
+Process finished with exit code 0
