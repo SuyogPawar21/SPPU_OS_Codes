@@ -198,11 +198,19 @@ int inputPageReferencesCount() {
     return pageReferencesCount;
 }
 
-void inputPageReferences(int pageReferencesCount, const int *pageReferences) {
+void inputPageReferences(int pageReferencesCount, int *pageReferences) {
     for (int i = 0; i < pageReferencesCount; i++) {
         printf("Enter page reference: ");
         scanf("%d", &pageReferences[i]);
     }
+}
+
+int* input(int* frameSize, int* pageReferencesCount, int* pageReferences) {
+    *frameSize = inputFrameSize();
+    *pageReferencesCount = inputPageReferencesCount();
+    pageReferences = malloc(sizeof(int) * (*pageReferencesCount));
+    inputPageReferences(*pageReferencesCount, pageReferences);
+    return pageReferences;
 }
 
 int main() {
@@ -216,26 +224,17 @@ int main() {
 
         switch (choice) {
             case 1:
-                frameSize = inputFrameSize();
-                pageReferencesCount = inputPageReferencesCount();
-                pageReferences = malloc(sizeof(int) * pageReferencesCount);
-                inputPageReferences(pageReferencesCount, pageReferences);
+                pageReferences = input(&frameSize, &pageReferencesCount, pageReferences);
                 FCFS(frameSize, pageReferences, pageReferencesCount);
                 free(pageReferences);
                 break;
             case 2:
-                frameSize = inputFrameSize();
-                pageReferencesCount = inputPageReferencesCount();
-                pageReferences = malloc(sizeof(int) * pageReferencesCount);
-                inputPageReferences(pageReferencesCount, pageReferences);
+                pageReferences = input(&frameSize, &pageReferencesCount, pageReferences);
                 LRU(frameSize, pageReferences, pageReferencesCount);
                 free(pageReferences);
                 break;
             case 3:
-                frameSize = inputFrameSize();
-                pageReferencesCount = inputPageReferencesCount();
-                pageReferences = malloc(sizeof(int) * pageReferencesCount);
-                inputPageReferences(pageReferencesCount, pageReferences);
+                pageReferences = input(&frameSize, &pageReferencesCount, pageReferences);
                 Optimal(frameSize, pageReferences, pageReferencesCount);
                 free(pageReferences);
                 break;
