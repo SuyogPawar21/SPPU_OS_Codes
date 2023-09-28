@@ -1,0 +1,12 @@
+Enter total number of elements: 6
+Enter 0 element: 4
+Enter 1 element: 5
+Enter 2 element: 2
+Enter 3 element: 6
+Enter 4 element: 7
+Enter 5 element: 3
+
+Child Process Output: 7 6 5 4 3 2
+Parent Process Output: 2 3 4 5 6 7
+
+Process finished with exit code 0
