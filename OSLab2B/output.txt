@@ -1,0 +1,10 @@
+Enter the number of strings: 3
+Enter string size: 3
+Enter string: dog
+Enter string size: 3
+Enter string: cat
+Enter string size: 3
+Enter string: rat
+Child Process: rat dog cat
+Parent Process: cat dog rat
+Process finished with exit code 0
