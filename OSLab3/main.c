@@ -4,21 +4,19 @@
  */
 
 
-#include "stdio.h"
+#include <stdio.h>
 
 #define MAXPROCESSESCOUNT 100
 #define MAXTOTALEXECUTIONTIME 200
 
-
 struct Process {
-    int pid;
     int arrivalTime;
     int burstTime;
 };
 
 struct ganttChartEntry {
     int timeOfPreemption;
-    int pid;
+    int processIndex;
 };
 
 struct InputProcesses {
@@ -29,8 +27,6 @@ struct InputProcesses {
 struct InputProcesses inputProcesses;
 int getProcessCount() { return inputProcesses.processCount; }
 void setProcessCount(int count) { inputProcesses.processCount = count; }
-int getProcessPid(int index) { return inputProcesses.processes[index].pid; }
-void setProcessPid(int index, int pid) { inputProcesses.processes[index].pid = pid; }
 int getProcessArrivalTime(int index) { return inputProcesses.processes[index].arrivalTime; }
 void setProcessArrivalTime(int index, int arrivalTime) { inputProcesses.processes[index].arrivalTime = arrivalTime; }
 int getProcessBurstTime(int index) { return inputProcesses.processes[index].burstTime; }
@@ -75,17 +71,17 @@ struct GanttChart ganttChart;
 int getGanttChartEntryCount() { return ganttChart.entryCount; }
 void setGanttChartEntryCount(int count) { ganttChart.entryCount = count; }
 int getTimeOfPreemption(int entryIndex) { return ganttChart.entries[entryIndex].timeOfPreemption; }
-int getEntryPid(int entryIndex) { return ganttChart.entries[entryIndex].pid; }
+int getEntryProcessIndex(int entryIndex) { return ganttChart.entries[entryIndex].processIndex; }
 void setTimeOfPreemption(int currentTime) { ganttChart.entries[ganttChart.entryCount].timeOfPreemption = currentTime; }
-void setPid(int pid) { ganttChart.entries[ganttChart.entryCount].pid = pid; }
+void setProcessIndex(int processIndex) { ganttChart.entries[ganttChart.entryCount].processIndex= processIndex; }
 void incrementEntryCount() { ganttChart.entryCount++; }
-void setGanttChartEntry(int currentTime, int pid) {
+void setGanttChartEntry(int currentTime, int processIndex) {
     setTimeOfPreemption(currentTime);
-    setPid(pid);
+    setProcessIndex(processIndex);
 }
 
-void updateGanttChart(int currentTime, int pid) {
-    setGanttChartEntry(currentTime, pid);
+void updateGanttChart(int currentTime, int processIndex) {
+    setGanttChartEntry(currentTime, processIndex);
     incrementEntryCount();
 }
 
@@ -136,16 +132,15 @@ void copyBurstTimes() {
 }
 
 void removeFromQueue(int currentTime, int processIndex) {
-    int pid = getProcessPid(processIndex);
-    updateGanttChart(currentTime , pid);
+    updateGanttChart(currentTime , processIndex);
     dequeue();
     setCompletionTime(processIndex, currentTime);
     setProcessExecutedCount(getProcessExecutedCount() + 1);
     setQuantumUsed(0);
 }
 
-void preemptProcess(int currentTime, int pid) {
-    updateGanttChart(currentTime , pid);
+void preemptProcess(int currentTime, int processIndex) {
+    updateGanttChart(currentTime , processIndex);
     enqueue(dequeue());
     setQuantumUsed(0);
 }
@@ -167,13 +162,12 @@ int isProcessFinished(int processIndex) {
 void preemptionCheck(int currentTime, int quantum) {
 
     int processIndex = getStartIndexEntry();
-    int pid = getProcessPid(processIndex);
 
     if (isProcessFinished(processIndex) != 0) {
         removeFromQueue(currentTime, processIndex);
     }
     else if (getQuantumUsed() == quantum) {
-        preemptProcess(currentTime, pid);
+        preemptProcess(currentTime, processIndex);
     }
     else return;
 }
@@ -264,8 +258,8 @@ void printGanttChart() {
     printf("\nGantt Chart\n");
     int previousTime = 0;
     for (int i = 0; i < getGanttChartEntryCount(); i++) {
-        printf("From %i to %i -> pid %i Executed\n",
-               previousTime, getTimeOfPreemption(i), getEntryPid(i));
+        printf("From %i to %i -> %ith Executed\n",
+               previousTime, getTimeOfPreemption(i), getEntryProcessIndex(i));
         previousTime = getTimeOfPreemption(i);
     }
 }
@@ -285,11 +279,9 @@ void input() {
     printf("Enter number of Processes: ");
     scanf("%i", &inputProcesses.processCount);
     for (int i = 0; i < inputProcesses.processCount; i++) {
-        printf("\nEnter pid of %i Process: ", i);
-        scanf("%i", &inputProcesses.processes[i].pid);
-        printf("Enter arrival time of %i Process: ", i);
+        printf("Enter arrival time of %ith Process: ", i);
         scanf("%i", &inputProcesses.processes[i].arrivalTime);
-        printf("Enter burst time of %i Process: ", i);
+        printf("Enter burst time of %ith Process: ", i);
         scanf("%i", &inputProcesses.processes[i].burstTime);
     }
 

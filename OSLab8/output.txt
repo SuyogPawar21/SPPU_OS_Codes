@@ -1,0 +1,75 @@
+Menu
+1. SSTF
+2. SCAN
+3. CLook
+4. Exit
+Enter your choice: 1
+Enter request count: 7
+Enter 0 request: 82
+Enter 1 request: 170
+Enter 2 request: 43
+Enter 3 request: 140
+Enter 4 request: 24
+Enter 5 request: 16
+Enter 6 request: 190
+Enter start position: 50
+Enter end position: 199
+50 -> 43: 7
+43 -> 24: 19
+24 -> 16: 8
+16 -> 82: 66
+82 -> 140: 58
+140 -> 170: 30
+170 -> 190: 20
+Total Overhead Movement: 208
+
+Menu
+1. SSTF
+2. SCAN
+3. CLook
+4. Exit
+Enter your choice: 2
+Enter request count: 7
+Enter 0 request: 82
+Enter 1 request: 170
+Enter 2 request: 43
+Enter 3 request: 140
+Enter 4 request: 24
+Enter 5 request: 16
+Enter 6 request: 190
+Enter start position: 50
+Enter end position: 199
+50 -> 82: 32
+82 -> 140: 58
+140 -> 170: 30
+170 -> 190: 20
+199 -> 43: 156
+43 -> 24: 19
+24 -> 16: 8
+Total Overhead Movement: 332
+
+Menu
+1. SSTF
+2. SCAN
+3. CLook
+4. Exit
+Enter your choice: 3
+Enter request count: 7
+Enter 0 request: 82
+Enter 1 request: 170
+Enter 2 request: 43
+Enter 3 request: 140
+Enter 4 request: 24
+Enter 5 request: 16
+Enter 6 request: 190
+Enter start position: 50
+Enter end position: 199
+50 -> 82: 32
+82 -> 140: 58
+140 -> 170: 30
+170 -> 190: 20
+Reset: 190 -> 16: 174
+16 -> 16: 0
+16 -> 24: 8
+24 -> 43: 19
+Total Overhead Movement: 341
